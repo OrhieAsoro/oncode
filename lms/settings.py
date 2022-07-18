@@ -31,17 +31,14 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 environment = os.getenv('ENVIRONMENT', 'development')
 # SECURITY WARNING: don't run with debug turned on in production!
 if environment == 'development':
-
     DEBUG = True
     ALLOWED_HOSTS = []
     DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
         }
     }
-
-
-elif environment == "production":
 
     DEBUG = False
     ALLOWED_HOSTS = ['oncode-elearning.herokuapp.com']
@@ -102,12 +99,6 @@ WSGI_APPLICATION = 'lms.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
@@ -151,7 +142,6 @@ STATIC_URL = '/static/'
 AUTH_USER_MODEL = 'elearn.User'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
