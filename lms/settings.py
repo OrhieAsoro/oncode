@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 import os
 from pathlib import Path
 from dotenv import load_dotenv, find_dotenv
+import dj_database_url
 
 load_dotenv(find_dotenv())
 
@@ -27,11 +28,26 @@ STATIC_DIR = os.path.join(BASE_DIR, 'static')
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv("SECRET_KEY")
-
+environment = os.getenv('ENVIRONMENT', 'development')
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+if environment == 'development':
 
-ALLOWED_HOSTS = []
+    DEBUG = True
+    ALLOWED_HOSTS = []
+    DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
+
+
+elif environment == "production":
+
+    DEBUG = False
+    ALLOWED_HOSTS = ['oncode-elearning.herokuapp.com']
+    DATABASES = {}
+    DATABASES['default'] = dj_database_url.config()
 
 
 # Application definition
@@ -42,6 +58,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
     'widget_tweaks',
     'bootstrap_modal_forms',
@@ -53,6 +70,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -134,6 +152,7 @@ STATIC_URL = '/static/'
 AUTH_USER_MODEL = 'elearn.User'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
