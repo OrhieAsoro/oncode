@@ -39,6 +39,8 @@ if environment == 'development':
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
         }
     }
+    
+elif environment == "production":
 
     DEBUG = False
     ALLOWED_HOSTS = ['oncode-elearning.herokuapp.com']
