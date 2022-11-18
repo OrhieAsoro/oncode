@@ -293,7 +293,7 @@ def home_instructor(request):
 class QuizCreateView(CreateView):
     model = Quiz
     fields = ('name', 'course')
-    template_name = 'dashboard/Instructor/quiz_add_form.html'
+    template_name = 'dashboard/instructor/quiz_add_form.html'
 
 
     def form_valid(self, form):
