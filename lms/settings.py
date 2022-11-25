@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 import os
+import cloudinary
 from pathlib import Path
 from dotenv import load_dotenv, find_dotenv
 import dj_database_url
@@ -160,6 +161,7 @@ CLOUDINARY_STORAGE = {
   'secure' : True
 }
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+import cloudinary.uploader
 import cloudinary.api
 
 # Default primary key field type
