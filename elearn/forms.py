@@ -3,6 +3,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.db import transaction
 from django.forms.utils import ValidationError
 from django import forms
+from cloudinary.forms import CloudinaryFileField
 
 from elearn.models import (Answer, Question, Learner, LearnerAnswer,
                               Course, User, Announcement)

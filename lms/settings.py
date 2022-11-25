@@ -11,12 +11,12 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 import os
+import cloudinary
 from pathlib import Path
 from dotenv import load_dotenv, find_dotenv
 import dj_database_url
 
 load_dotenv(find_dotenv())
-
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -64,6 +64,7 @@ INSTALLED_APPS = [
     'django_forms_bootstrap',
     'crispy_forms',
     'elearn',
+    'cloudinary',
 ]
 
 MIDDLEWARE = [
@@ -153,7 +154,18 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 MEDIA_URL = '/media/'
 
+CLOUDINARY_STORAGE = {
+  'cloud_name' : "dspswzlmt", 
+  'api_key' : "455694778616254", 
+  'api_secret' : "L4SKyB_iepVQaIkDKufyTf3-ebA",
+  'secure' : True
+}
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+import cloudinary.uploader
+import cloudinary.api
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+

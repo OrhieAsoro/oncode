@@ -40,7 +40,8 @@ from django.core.files.storage import FileSystemStorage
 from django.contrib.auth.forms import (AuthenticationForm, UserCreationForm,
                                        PasswordChangeForm)
 
-from django.contrib.auth import update_session_auth_hash                                       
+from django.contrib.auth import update_session_auth_hash 
+import cloudinary                                      
 
 
 from bootstrap_modal_forms.generic import (
