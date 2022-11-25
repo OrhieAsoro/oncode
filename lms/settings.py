@@ -160,7 +160,6 @@ CLOUDINARY_STORAGE = {
   'secure' : True
 }
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
-import cloudinary.uploader
 import cloudinary.api
 
 # Default primary key field type
